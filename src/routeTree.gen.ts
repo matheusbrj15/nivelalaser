@@ -20,7 +20,6 @@ import { Route as DuvidasFrequentesRouteImport } from './routes/duvidas-frequent
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as AguardandoPagamentoRouteImport } from './routes/aguardando-pagamento'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApiPublicYampiWebhookRouteImport } from './routes/api/public/yampi-webhook'
 import { Route as ApiPublicPaymentWebhookRouteImport } from './routes/api/public/payment-webhook'
 
 const TrocasEReembolsosRoute = TrocasEReembolsosRouteImport.update({
@@ -78,11 +77,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicYampiWebhookRoute = ApiPublicYampiWebhookRouteImport.update({
-  id: '/api/public/yampi-webhook',
-  path: '/api/public/yampi-webhook',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiPublicPaymentWebhookRoute = ApiPublicPaymentWebhookRouteImport.update({
   id: '/api/public/payment-webhook',
   path: '/api/public/payment-webhook',
@@ -102,7 +96,6 @@ export interface FileRoutesByFullPath {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/trocas-e-reembolsos': typeof TrocasEReembolsosRoute
   '/api/public/payment-webhook': typeof ApiPublicPaymentWebhookRoute
-  '/api/public/yampi-webhook': typeof ApiPublicYampiWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -117,7 +110,6 @@ export interface FileRoutesByTo {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/trocas-e-reembolsos': typeof TrocasEReembolsosRoute
   '/api/public/payment-webhook': typeof ApiPublicPaymentWebhookRoute
-  '/api/public/yampi-webhook': typeof ApiPublicYampiWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -133,7 +125,6 @@ export interface FileRoutesById {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/trocas-e-reembolsos': typeof TrocasEReembolsosRoute
   '/api/public/payment-webhook': typeof ApiPublicPaymentWebhookRoute
-  '/api/public/yampi-webhook': typeof ApiPublicYampiWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -150,7 +141,6 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/trocas-e-reembolsos'
     | '/api/public/payment-webhook'
-    | '/api/public/yampi-webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -165,7 +155,6 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/trocas-e-reembolsos'
     | '/api/public/payment-webhook'
-    | '/api/public/yampi-webhook'
   id:
     | '__root__'
     | '/'
@@ -180,7 +169,6 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/trocas-e-reembolsos'
     | '/api/public/payment-webhook'
-    | '/api/public/yampi-webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -196,7 +184,6 @@ export interface RootRouteChildren {
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   TrocasEReembolsosRoute: typeof TrocasEReembolsosRoute
   ApiPublicPaymentWebhookRoute: typeof ApiPublicPaymentWebhookRoute
-  ApiPublicYampiWebhookRoute: typeof ApiPublicYampiWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -278,13 +265,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/yampi-webhook': {
-      id: '/api/public/yampi-webhook'
-      path: '/api/public/yampi-webhook'
-      fullPath: '/api/public/yampi-webhook'
-      preLoaderRoute: typeof ApiPublicYampiWebhookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/public/payment-webhook': {
       id: '/api/public/payment-webhook'
       path: '/api/public/payment-webhook'
@@ -308,7 +288,6 @@ const rootRouteChildren: RootRouteChildren = {
   TermosDeUsoRoute: TermosDeUsoRoute,
   TrocasEReembolsosRoute: TrocasEReembolsosRoute,
   ApiPublicPaymentWebhookRoute: ApiPublicPaymentWebhookRoute,
-  ApiPublicYampiWebhookRoute: ApiPublicYampiWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

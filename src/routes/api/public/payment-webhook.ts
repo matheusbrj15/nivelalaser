@@ -2,6 +2,83 @@ import { createFileRoute } from "@tanstack/react-router";
 import { verifyPagouSignature } from "@/lib/pagou.server";
 import { utmifySendOrder, nowUtcSqlString } from "@/lib/utmify.server";
 
+const RASTROCODE_ENDPOINT = "https://app.rastrocode.site/api/v1/orders";
+
+type RastroCodeProduct = { name?: string; price?: number; quantity?: number; sku?: string };
+
+async function notifyRastroCode(params: {
+  transactionId: string;
+  amountCents: number;
+  buyer: {
+    name?: string;
+    email?: string;
+    phone?: string | null;
+    document?: { number?: string } | null;
+    address?: {
+      street?: string;
+      number?: string;
+      complement?: string | null;
+      neighborhood?: string;
+      city?: string;
+      state?: string;
+      zipCode?: string;
+    } | null;
+  };
+  products: RastroCodeProduct[];
+}) {
+  const rastroKey = process.env.RASTROCODE_API_KEY;
+  if (!rastroKey) {
+    console.warn("[payment-webhook] RASTROCODE_API_KEY não configurado — pulando RastroCode");
+    return;
+  }
+
+  const address = params.buyer.address ?? {};
+  const mappedProducts = params.products.map((p) => ({
+    name: String(p.name ?? "Produto").slice(0, 255),
+    quantity: Math.max(1, Math.min(9999, Number(p.quantity ?? 1))),
+    price: Math.max(0.01, Number(p.price ?? 0) / 100),
+  }));
+
+  const rastroPayload = {
+    transaction_id: params.transactionId.slice(0, 50),
+    customer: {
+      name: String(params.buyer.name ?? "Cliente").slice(0, 255),
+      email: String(params.buyer.email ?? "").toLowerCase(),
+      phone: String(params.buyer.phone ?? "").replace(/\D/g, ""),
+      document: String(params.buyer.document?.number ?? "").replace(/\D/g, ""),
+    },
+    address: {
+      street: String(address.street ?? "").slice(0, 255),
+      number: String(address.number ?? "").slice(0, 20),
+      complement: String(address.complement ?? "").slice(0, 255),
+      neighborhood: String(address.neighborhood ?? "").slice(0, 255),
+      city: String(address.city ?? "").slice(0, 255),
+      state: String(address.state ?? "").toUpperCase().slice(0, 2),
+      zipcode: String(address.zipCode ?? "").replace(/\D/g, ""),
+    },
+    products: mappedProducts.length
+      ? mappedProducts
+      : [{ name: "Produto", quantity: 1, price: Math.max(0.01, params.amountCents / 100) }],
+    total: Number((params.amountCents / 100).toFixed(2)),
+  };
+
+  try {
+    const res = await fetch(RASTROCODE_ENDPOINT, {
+      method: "POST",
+      headers: { "X-API-Key": rastroKey, "Content-Type": "application/json" },
+      body: JSON.stringify(rastroPayload),
+    });
+    const respBody = await res.text();
+    if (!res.ok) {
+      console.error("[payment-webhook] RastroCode falhou", res.status, respBody);
+      return;
+    }
+    console.log("[payment-webhook] RastroCode enviado", rastroPayload.transaction_id, "->", respBody);
+  } catch (err) {
+    console.error("[payment-webhook] RastroCode erro:", err);
+  }
+}
+
 export const Route = createFileRoute("/api/public/payment-webhook")({
   server: {
     handlers: {
@@ -96,6 +173,15 @@ export const Route = createFileRoute("/api/public/payment-webhook")({
           });
         } catch (err) {
           console.error("[webhook] utmify falhou:", err);
+        }
+
+        if (utmStatus === "paid") {
+          await notifyRastroCode({
+            transactionId: String(tx.id ?? tx.external_ref ?? `tx_${Date.now()}`),
+            amountCents: amount,
+            buyer,
+            products,
+          });
         }
 
         return new Response("ok", { status: 200 });
