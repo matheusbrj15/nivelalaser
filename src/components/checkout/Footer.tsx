@@ -17,7 +17,7 @@ export function Footer() {
         ))}
       </ul>
       <p className="mt-3 text-[11px] text-muted-foreground">
-        © {new Date().getFullYear()} Compra Certa. Todos os direitos reservados.
+        © {new Date().getFullYear()} VitrineMix. Todos os direitos reservados.
       </p>
     </footer>
   );

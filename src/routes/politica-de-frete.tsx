@@ -4,8 +4,8 @@ import { InstitutionalPage, Section } from "@/components/site/InstitutionalPage"
 export const Route = createFileRoute("/politica-de-frete")({
   head: () => ({
     meta: [
-      { title: "Política de Frete — Compra Certa" },
-      { name: "description", content: "Frete grátis para todo o Brasil. Confira os prazos de entrega da Compra Certa." },
+      { title: "Política de Frete — VitrineMix" },
+      { name: "description", content: "Frete grátis para todo o Brasil. Confira os prazos de entrega da VitrineMix." },
     ],
   }),
   component: FretePage,

@@ -4,8 +4,8 @@ import { InstitutionalPage, Section } from "@/components/site/InstitutionalPage"
 export const Route = createFileRoute("/politica-de-privacidade")({
   head: () => ({
     meta: [
-      { title: "Política de Privacidade — Compra Certa" },
-      { name: "description", content: "Como a Compra Certa protege e utiliza seus dados pessoais." },
+      { title: "Política de Privacidade — VitrineMix" },
+      { name: "description", content: "Como a VitrineMix protege e utiliza seus dados pessoais." },
     ],
   }),
   component: PrivacidadePage,
@@ -15,7 +15,7 @@ function PrivacidadePage() {
   return (
     <InstitutionalPage title="Política de Privacidade">
       <p>
-        A <strong>Compra Certa</strong> respeita sua privacidade e está
+        A <strong>VitrineMix</strong> respeita sua privacidade e está
         comprometida com a proteção dos seus dados pessoais.
       </p>
 

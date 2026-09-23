@@ -13,7 +13,7 @@ import {
   Users,
   ChevronRight,
 } from "lucide-react";
-import logoAsset from "@/assets/compra-certa-logo-orange.png.asset.json";
+import { BrandLogo } from "@/components/BrandLogo";
 
 type MenuEntry =
   | {
@@ -105,13 +105,9 @@ export function SideMenu({
       >
         <div className="bg-compra-certa text-white px-4 py-4 flex items-start justify-between">
           <div className="flex flex-col gap-2">
-            <img
-              src={logoAsset.url}
-              alt="Compra Certa"
-              className="h-8 w-auto object-contain"
-            />
+            <BrandLogo variant="onOrange" className="text-2xl" />
             <p className="text-sm font-medium text-white/90">
-              Bem-vindo(a) à Compra Certa!
+              Bem-vindo(a) à VitrineMix!
             </p>
           </div>
           <button

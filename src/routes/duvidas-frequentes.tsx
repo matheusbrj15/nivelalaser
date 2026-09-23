@@ -5,8 +5,8 @@ import { AccordionItem } from "@/components/site/AccordionItem";
 export const Route = createFileRoute("/duvidas-frequentes")({
   head: () => ({
     meta: [
-      { title: "Dúvidas Frequentes — Compra Certa" },
-      { name: "description", content: "Perguntas frequentes sobre entrega, pagamento, trocas e segurança na Compra Certa." },
+      { title: "Dúvidas Frequentes — VitrineMix" },
+      { name: "description", content: "Perguntas frequentes sobre entrega, pagamento, trocas e segurança na VitrineMix." },
     ],
   }),
   component: FaqPage,

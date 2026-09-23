@@ -1,14 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Star, ShieldCheck } from "lucide-react";
-import descricaoNivelLaserAsset from "@/assets/descricao-nivel-laser.png.asset.json";
-import avaliacoesHeaderAsset from "@/assets/avaliacoes-header.png.asset.json";
-import ratingBarAsset from "@/assets/rating-bar.png.asset.json";
-import reviewImage1 from "@/assets/reviews-laser/review-laser-3.png.asset.json";
-import reviewImage2 from "@/assets/reviews-laser/review-laser-4.png.asset.json";
-import reviewImage3 from "@/assets/reviews-laser/review-laser-5.png.asset.json";
-import reviewImage4 from "@/assets/reviews-laser/review-laser-6.png.asset.json";
-import reviewImage5 from "@/assets/reviews-laser/review-laser-7.png.asset.json";
-import reviewImage6 from "@/assets/reviews-laser/review-laser-3.png.asset.json";
+import { Star, ShieldCheck, ChevronRight } from "lucide-react";
 import { TopBar } from "@/components/site/TopBar";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { StickyBuyBar } from "@/components/site/StickyBuyBar";
@@ -47,37 +38,37 @@ const reviews = [
     n: "Rafael M.",
     c: "São Paulo/SP",
     t: "Usei para instalar os móveis da cozinha e facilitou muito na hora de deixar tudo alinhado. O laser verde aparece muito bem.",
-    image: reviewImage1.url,
+    image: "/images/nivel-laser/reviews/review-1.webp",
   },
   {
     n: "Camila R.",
     c: "Belo Horizonte/MG",
     t: "Comprei para algumas reformas em casa e gostei bastante. O tripé ajuda muito para manter o equipamento na posição certa.",
-    image: reviewImage2.url,
+    image: "/images/nivel-laser/reviews/review-2.webp",
   },
   {
     n: "Diego S.",
     c: "Curitiba/PR",
     t: "Trabalho com instalação e esse nível me ajudou bastante nos alinhamentos. As linhas 360° facilitam muito.",
-    image: reviewImage3.url,
+    image: "/images/nivel-laser/reviews/review-3.webp",
   },
   {
     n: "Patrícia L.",
     c: "Porto Alegre/RS",
     t: "Gostei de vir com duas baterias. Consigo trabalhar sem precisar ficar parando toda hora para recarregar.",
-    image: reviewImage4.url,
+    image: "/images/nivel-laser/reviews/review-4.webp",
   },
   {
     n: "Bruno A.",
     c: "Goiânia/GO",
     t: "Para colocar prateleiras, armários e fazer marcações ficou muito mais fácil. O laser verde é bem visível.",
-    image: reviewImage5.url,
+    image: "/images/nivel-laser/reviews/review-5.webp",
   },
   {
     n: "Marcos F.",
     c: "Campinas/SP",
     t: "Produto muito útil para quem faz reforma. O tripé também facilita bastante na hora de trabalhar sozinho.",
-    image: reviewImage6.url,
+    image: "/images/nivel-laser/reviews/review-6.webp",
   },
 ];
 
@@ -108,7 +99,7 @@ function ProductPage() {
         <PriceBand />
 
         {/* 4/5/6/7 — bloco de informações */}
-        <section className="bg-white px-3 py-2.5 space-y-2">
+        <section className="bg-white px-3 py-1.5 space-y-1.5">
           {/* 4 — Título */}
           <h1 className="text-[15px] leading-snug font-semibold text-navy line-clamp-3">
             <span className="inline-flex items-center align-middle mr-2 px-2 py-0.5 rounded-[4px] bg-[#FF5A2A] text-white text-[12px] font-bold">
@@ -118,11 +109,11 @@ function ProductPage() {
           </h1>
 
           {/* 5 — Avaliações */}
-          <img
-            src={ratingBarAsset.url}
-            alt="4,8 estrelas — 1.871 vendidos"
-            className="w-full h-auto block"
-          />
+          <div className="flex items-center gap-1.5">
+            <Star className="w-4 h-4 fill-star text-star" />
+            <span className="text-sm font-bold text-navy">4,8</span>
+            <span className="text-sm text-muted-foreground">1.871 Vendidos</span>
+          </div>
 
           {/* 6 — Card de reputação da loja */}
           <StoreReputationCard />
@@ -132,7 +123,7 @@ function ProductPage() {
         <section className="bg-white mt-1.5">
           <h2 className="text-[13px] font-bold text-navy px-3 pt-2.5">Descrição do produto</h2>
           <img
-            src={descricaoNivelLaserAsset.url}
+            src="/images/nivel-laser/descricao-nivel-laser.jpg"
             alt="Características do Nível Laser 16 Linhas 360° com Tripé"
             className="w-full h-auto block mt-1.5"
           />
@@ -140,13 +131,51 @@ function ProductPage() {
 
         {/* Reviews */}
         <section className="bg-white mt-1.5 px-2 py-3">
-          <img
-            src={avaliacoesHeaderAsset.url}
-            alt="Avaliações do produto 4.6/5 com 1,4 mil resenhas"
-            className="w-full h-auto block mb-3"
-          />
+          <div className="px-1">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-[15px] font-bold text-navy">Avaliações do produto</h3>
+              <a
+                href="#lista-avaliacoes"
+                className="inline-flex items-center gap-0.5 text-[12px] font-semibold text-primary"
+              >
+                Ver tudo <ChevronRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
 
-          <div className="space-y-2 mt-2">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative inline-flex">
+                <div className="flex gap-0.5">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <Star key={i} className="w-4 h-4 text-star/30" />
+                  ))}
+                </div>
+                <div
+                  className="absolute inset-0 flex gap-0.5 overflow-hidden"
+                  style={{ width: "92%" }}
+                >
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <Star key={i} className="w-4 h-4 fill-star text-star shrink-0" />
+                  ))}
+                </div>
+              </div>
+              <span className="text-[13px] font-bold text-navy">4,6/5</span>
+              <span className="text-[12px] text-muted-foreground">(1,4mil resenhas)</span>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center rounded-full border border-hairline bg-[#f5f5f5] px-3 py-1 text-[11px] font-medium text-navy">
+                Chegou rápido (27)
+              </span>
+              <span className="inline-flex items-center rounded-full border border-hairline bg-[#f5f5f5] px-3 py-1 text-[11px] font-medium text-navy">
+                Chegou no prazo (26)
+              </span>
+              <span className="inline-flex items-center rounded-full border border-hairline bg-[#f5f5f5] px-3 py-1 text-[11px] font-medium text-navy">
+                Ótimo produto (20)
+              </span>
+            </div>
+          </div>
+
+          <div id="lista-avaliacoes" className="space-y-2 mt-3" style={{ scrollMarginTop: 72 }}>
             {reviews.map((r) => (
               <article
                 key={r.n}

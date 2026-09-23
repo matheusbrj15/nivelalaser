@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import foto1 from "@/assets/nivel-laser/1-2.png.asset.json";
-import foto2 from "@/assets/nivel-laser/2-2.png.asset.json";
-import foto3 from "@/assets/nivel-laser/3-2.png.asset.json";
 
-const images = [foto1.url, foto2.url, foto3.url];
+const images = [
+  "/images/nivel-laser/nivel-laser-1.png",
+  "/images/nivel-laser/nivel-laser-2.png",
+  "/images/nivel-laser/nivel-laser-3.png",
+];
 
 export function ProductGallery() {
   const [i, setI] = useState(0);

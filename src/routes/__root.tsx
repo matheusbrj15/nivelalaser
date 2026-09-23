@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Nível laser verde 360° com 16 linhas, alcance de até 30m, tripé e 2 baterias. Ideal para alinhamentos, nivelamentos e marcações em reformas e instalações.",
       },
-      { name: "author", content: "Compra Certa" },
+      { name: "author", content: "VitrineMix" },
       { property: "og:title", content: "Nível Laser 16 Linhas 360° com Tripé — Precisão Profissional em Seus Projetos" },
       {
         property: "og:description",

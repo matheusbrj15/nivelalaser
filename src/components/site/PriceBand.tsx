@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ofertasBadge from "@/assets/ofertas-relampago.png.asset.json";
+import { Zap } from "lucide-react";
 
 const TOTAL = 600; // 10 minutos
 
@@ -34,11 +34,10 @@ export function PriceBand() {
             53% OFF
           </span>
         </div>
-        <img
-          src={ofertasBadge.url}
-          alt="Ofertas Relâmpago"
-          className="shrink-0 h-[18px] w-auto"
-        />
+        <span className="shrink-0 inline-flex items-center gap-1 rounded-[4px] border border-[#FFD400] bg-[#EE4D2D] px-1.5 py-1 text-white text-[11px] font-extrabold uppercase tracking-wide leading-none whitespace-nowrap">
+          <Zap className="h-4 w-4 text-[#FFD400] fill-[#FFD400]" />
+          Ofertas Relâmpago
+        </span>
 
       </div>
 

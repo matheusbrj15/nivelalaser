@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, Search, Truck } from "lucide-react";
-import logoAsset from "@/assets/compra-certa-logo-orange.png.asset.json";
+import { BrandLogo } from "@/components/BrandLogo";
 import { SideMenu } from "./SideMenu";
 
 export function TopBar() {
@@ -21,11 +21,7 @@ export function TopBar() {
             <Menu className="w-6 h-6" />
           </button>
           <Link to="/" className="flex items-center">
-            <img
-              src={logoAsset.url}
-              alt="Compra Certa"
-              className="h-8 w-auto object-contain"
-            />
+            <BrandLogo variant="onOrange" className="text-2xl" />
           </Link>
           <div className="flex items-center gap-1 text-white">
             <button aria-label="Rastrear pedido" className="p-2">

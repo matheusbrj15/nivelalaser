@@ -4,8 +4,8 @@ import { InstitutionalPage, Section } from "@/components/site/InstitutionalPage"
 export const Route = createFileRoute("/termos-de-uso")({
   head: () => ({
     meta: [
-      { title: "Termos de Uso — Compra Certa" },
-      { name: "description", content: "Termos de uso do site Compra Certa." },
+      { title: "Termos de Uso — VitrineMix" },
+      { name: "description", content: "Termos de uso do site VitrineMix." },
     ],
   }),
   component: TermosPage,
@@ -22,7 +22,7 @@ function TermosPage() {
         <p>Os preços e condições podem ser alterados sem aviso prévio conforme disponibilidade da oferta.</p>
       </Section>
       <Section heading="3. Propriedade Intelectual">
-        <p>Todo o conteúdo deste site pertence à Compra Certa.</p>
+        <p>Todo o conteúdo deste site pertence à VitrineMix.</p>
         <p>É proibida qualquer reprodução sem autorização.</p>
       </Section>
       <Section heading="4. Responsabilidade">

@@ -5,8 +5,8 @@ import { ShieldCheck, Lock, CreditCard, ServerCog } from "lucide-react";
 export const Route = createFileRoute("/pagamento-seguro")({
   head: () => ({
     meta: [
-      { title: "Pagamento Seguro — Compra Certa" },
-      { name: "description", content: "Compra Certa utiliza criptografia SSL e plataformas de pagamento certificadas." },
+      { title: "Pagamento Seguro — VitrineMix" },
+      { name: "description", content: "VitrineMix utiliza criptografia SSL e plataformas de pagamento certificadas." },
     ],
   }),
   component: PagamentoSeguroPage,

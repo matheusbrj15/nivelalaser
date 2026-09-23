@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 export const Route = createFileRoute("/aguardando-pagamento")({
   head: () => ({
     meta: [
-      { title: "Aguardando pagamento — Compra Certa" },
+      { title: "Aguardando pagamento — VitrineMix" },
       { name: "robots", content: "noindex" },
     ],
   }),

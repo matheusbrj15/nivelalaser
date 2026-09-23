@@ -4,8 +4,8 @@ import { InstitutionalPage, Section } from "@/components/site/InstitutionalPage"
 export const Route = createFileRoute("/quem-somos")({
   head: () => ({
     meta: [
-      { title: "Quem Somos — Compra Certa" },
-      { name: "description", content: "Conheça a Compra Certa: produtos de qualidade com excelente custo-benefício." },
+      { title: "Quem Somos — VitrineMix" },
+      { name: "description", content: "Conheça a VitrineMix: produtos de qualidade com excelente custo-benefício." },
     ],
   }),
   component: QuemSomosPage,
@@ -15,7 +15,7 @@ function QuemSomosPage() {
   return (
     <InstitutionalPage title="Quem Somos">
       <p>
-        A <strong>Compra Certa</strong> é uma empresa brasileira dedicada a
+        A <strong>VitrineMix</strong> é uma empresa brasileira dedicada a
         oferecer produtos de qualidade com excelente custo-benefício.
       </p>
       <p>

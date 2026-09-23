@@ -1,17 +1,13 @@
 import { Mail, Clock, Truck, MessageCircle } from "lucide-react";
-import logoAsset from "@/assets/logo-footer.png.asset.json";
-import paymentStripAsset from "@/assets/payment-strip.png.asset.json";
+import { BrandLogo } from "@/components/BrandLogo";
+import { PaymentIcons } from "@/components/site/PaymentIcons";
 
 export function SiteFooter() {
   return (
     <footer className="bg-black text-navy-foreground mt-8">
       <div className="container-page py-8 space-y-6">
         <div className="text-center">
-          <img
-            src={logoAsset.url}
-            alt="Compra Certa"
-            className="h-9 w-auto object-contain mx-auto rounded-lg"
-          />
+          <BrandLogo variant="onDark" className="text-4xl" />
           <p className="text-xs text-white/60 mt-2">
             Sua loja de confiança para compras online
           </p>
@@ -25,29 +21,29 @@ export function SiteFooter() {
             <li className="flex items-center gap-2">
               <Mail className="w-4 h-4 shrink-0" />
               <a
-                href="mailto:suporte@saccomprascertas.com"
+                href="mailto:contato@suportesac-vitrinemix.com"
                 className="hover:underline"
               >
-                suporte@saccomprascertas.com
+                contato@suportesac-vitrinemix.com
               </a>
             </li>
             <li className="flex items-center gap-2">
               <MessageCircle className="w-4 h-4 shrink-0" />
               <a
-                href="https://wa.me/5511916559178?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20um%20produto."
+                href="https://wa.me/551151985194?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20um%20produto."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
               >
-                +55 11 91655-9178
+                (11) 5198-5194
               </a>
             </li>
             <li className="flex items-center gap-2">
               <Clock className="w-4 h-4 shrink-0" />
-              Seg–Sex: 08h às 17h
+              Seg. a Sex., 08h às 17h
             </li>
           </ul>
-          <button className="mt-4 w-full flex items-center justify-center gap-2 border border-white/25 rounded-lg py-2.5 text-sm font-semibold hover:bg-white/5 transition">
+          <button className="mt-4 w-full flex items-center justify-center gap-2 border border-white/25 rounded-full py-2.5 text-sm font-semibold hover:bg-white/5 transition">
             <Truck className="w-4 h-4" /> Rastrear Pedido
           </button>
         </div>
@@ -74,7 +70,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="text-xs text-white/70 leading-relaxed pt-2 border-t border-white/10">
+        <p className="text-xs text-white/70 leading-relaxed">
           Preços e condições exclusivos para compras neste site oficial, podendo
           variar com o tempo da oferta. Evite comprar produtos mais baratos ou
           de outras lojas, pois você pode estar sendo enganado(a) por um
@@ -83,18 +79,11 @@ export function SiteFooter() {
 
         <div className="text-center">
           <p className="text-xs mb-3">Nós aceitamos</p>
-          <div className="flex flex-wrap gap-2 justify-center items-center">
-            <img
-              src={paymentStripAsset.url}
-              alt="Formas de pagamento: Pix, Visa, Mastercard, Elo, American Express, Hipercard, Discover, Diners Club"
-              loading="lazy"
-              className="h-[18px] w-auto object-contain"
-            />
-          </div>
+          <PaymentIcons />
         </div>
 
         <p className="text-center text-[11px] text-white/60 pt-4">
-          © {new Date().getFullYear()} Compra Certa • CNPJ: 07.888.632/0001-82
+          © {new Date().getFullYear()} <span className="font-bold uppercase">VitrineMix</span> • CNPJ: 66.527.190/0001-08
         </p>
 
       </div>

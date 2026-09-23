@@ -4,8 +4,8 @@ import { InstitutionalPage, Section } from "@/components/site/InstitutionalPage"
 export const Route = createFileRoute("/trocas-e-reembolsos")({
   head: () => ({
     meta: [
-      { title: "Trocas e Reembolsos — Compra Certa" },
-      { name: "description", content: "Política de trocas e reembolsos da Compra Certa. 30 dias de garantia." },
+      { title: "Trocas e Reembolsos — VitrineMix" },
+      { name: "description", content: "Política de trocas e reembolsos da VitrineMix. 30 dias de garantia." },
     ],
   }),
   component: TrocasPage,
