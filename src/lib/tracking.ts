@@ -19,8 +19,18 @@ declare global {
   }
 }
 
+// UTMify's pixel.js intercepts clicks on outbound links and re-dispatches
+// the click itself (that's how it navigates with its tracking codes), so
+// our onClick runs twice for one real click. Ignore repeats within a
+// short window so Meta receives a single InitiateCheckout per click.
+const DEDUPE_MS = 2000;
+let lastInitiateCheckoutAt = 0;
+
 export function trackInitiateCheckout() {
   if (typeof window === "undefined") return;
+  const now = Date.now();
+  if (now - lastInitiateCheckoutAt < DEDUPE_MS) return;
+  lastInitiateCheckoutAt = now;
   try {
     window.fbq?.("track", "InitiateCheckout");
   } catch {
