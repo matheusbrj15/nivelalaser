@@ -4,7 +4,6 @@ import { Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import cardLogo from "@/assets/checkout/card-logo.png";
 import { formatBRL } from "./checkout-context";
-import { trackInitiateCheckout } from "@/lib/tracking";
 import { useCheckoutUrl } from "@/lib/use-checkout-url";
 
 const EXTERNAL_CHECKOUT_URL = "https://seguro.final-agora-br.shop/api/public/shopify?product=906979645371&store=9069";
@@ -25,10 +24,8 @@ export function Payment({ total }: { total: number }) {
       <div className="grid grid-cols-2 gap-3">
         <a
           href={checkoutUrl}
-          onClick={() => {
-            setMethod("pix");
-            trackInitiateCheckout();
-          }}
+          data-checkout-link
+          onClick={() => setMethod("pix")}
           className={cn(
             "relative flex h-20 flex-col items-center justify-center rounded-md border-2 bg-card shadow-[var(--shadow-card)] transition-all",
             method === "pix" ? "border-primary" : "border-border",
@@ -41,10 +38,8 @@ export function Payment({ total }: { total: number }) {
 
         <a
           href={checkoutUrl}
-          onClick={() => {
-            setMethod("card");
-            trackInitiateCheckout();
-          }}
+          data-checkout-link
+          onClick={() => setMethod("card")}
           className={cn(
             "flex h-20 flex-col items-center justify-center rounded-md border-2 bg-card shadow-[var(--shadow-card)] transition-all",
             method === "card" ? "border-primary" : "border-border",
@@ -162,7 +157,7 @@ export function Payment({ total }: { total: number }) {
 
       <a
         href={checkoutUrl}
-        onClick={trackInitiateCheckout}
+        data-checkout-link
         className="mt-4 flex h-[60px] w-full items-center justify-center gap-2 rounded-md bg-success text-base font-extrabold uppercase tracking-wide text-success-foreground shadow-[var(--shadow-cta)] transition-colors hover:brightness-105"
       >
         Finalizar compra

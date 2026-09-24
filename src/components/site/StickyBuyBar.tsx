@@ -1,4 +1,3 @@
-import { trackInitiateCheckout } from "@/lib/tracking";
 import { useCheckoutUrl } from "@/lib/use-checkout-url";
 
 const EXTERNAL_CHECKOUT_URL = "https://seguro.final-agora-br.shop/api/public/shopify?product=906979645371&store=9069";
@@ -18,7 +17,7 @@ export function StickyBuyBar({
       <div className="w-full px-3 py-2.5">
         <a
           href={href}
-          onClick={trackInitiateCheckout}
+          data-checkout-link
           className="block w-full max-w-[500px] mx-auto text-center bg-[#16A34A] hover:bg-[#15803D] active:bg-[#166534] transition text-white font-extrabold text-[17px] rounded-[12px] h-[52px] leading-[52px]"
         >
           {label}

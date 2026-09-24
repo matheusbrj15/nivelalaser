@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { installCheckoutClickGuard } from "../lib/tracking";
 
 function NotFoundComponent() {
   return (
@@ -172,6 +173,10 @@ fbq('track', 'PageView');`,
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    installCheckoutClickGuard();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

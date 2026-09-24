@@ -6,7 +6,6 @@ import { StickyBuyBar } from "@/components/site/StickyBuyBar";
 import { StoreReputationCard } from "@/components/site/StoreReputationCard";
 import { ProductGallery } from "@/components/site/ProductGallery";
 import { PriceBand } from "@/components/site/PriceBand";
-import { trackInitiateCheckout } from "@/lib/tracking";
 import { useCheckoutUrl } from "@/lib/use-checkout-url";
 
 import { AccordionItem } from "@/components/site/AccordionItem";
@@ -240,7 +239,7 @@ function ProductPage() {
         <div className="bg-white mt-1.5 px-3 py-3">
           <a
             href={finalCtaUrl}
-            onClick={trackInitiateCheckout}
+            data-checkout-link
             className="block w-full text-center bg-brand-green hover:bg-brand-green-dark transition text-white font-extrabold py-3 rounded-md tracking-wide"
           >
             QUERO MEU NÍVEL LASER
