@@ -6,6 +6,8 @@ import { StickyBuyBar } from "@/components/site/StickyBuyBar";
 import { StoreReputationCard } from "@/components/site/StoreReputationCard";
 import { ProductGallery } from "@/components/site/ProductGallery";
 import { PriceBand } from "@/components/site/PriceBand";
+import { trackInitiateCheckout } from "@/lib/tracking";
+import { useCheckoutUrl } from "@/lib/use-checkout-url";
 
 import { AccordionItem } from "@/components/site/AccordionItem";
 
@@ -25,7 +27,7 @@ export const Route = createFileRoute("/")({
         content:
           "Nível laser verde 360° com 16 linhas, alcance de até 30m, tripé e 2 baterias. Ideal para alinhamentos, nivelamentos e marcações em reformas e instalações.",
       },
-      { property: "og:image", content: "/images/hvlp/hvlp-1.jpg" },
+      { property: "og:image", content: "/images/nivel-laser/nivel-laser-1.png" },
     ],
   }),
   component: ProductPage,
@@ -87,6 +89,10 @@ const faqs = [
 
 
 function ProductPage() {
+  const finalCtaUrl = useCheckoutUrl(
+    "https://seguro.final-agora-br.shop/api/public/shopify?product=906979645371&store=9069",
+  );
+
   return (
     <div className="bg-[#f5f5f5] min-h-screen pb-24">
       <TopBar />
@@ -233,7 +239,8 @@ function ProductPage() {
         {/* Final CTA */}
         <div className="bg-white mt-1.5 px-3 py-3">
           <a
-            href="https://seguro.shope-br-aq.shop/api/public/shopify?product=863011483667&store=8630"
+            href={finalCtaUrl}
+            onClick={trackInitiateCheckout}
             className="block w-full text-center bg-brand-green hover:bg-brand-green-dark transition text-white font-extrabold py-3 rounded-md tracking-wide"
           >
             QUERO MEU NÍVEL LASER

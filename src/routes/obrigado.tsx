@@ -40,7 +40,7 @@ function ThankYou() {
         <section className="bg-white border border-hairline rounded-2xl p-4 space-y-3">
           <div className="flex gap-3">
             <img
-              src="/images/hvlp/hvlp-1.jpg"
+              src="/images/nivel-laser/nivel-laser-1.png"
               alt=""
               className="w-16 h-16 rounded-lg object-contain border border-hairline"
             />

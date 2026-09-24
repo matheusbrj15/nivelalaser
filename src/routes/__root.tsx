@@ -96,8 +96,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Nível Laser 16 Linhas 360° com Tripé — Precisão Profissional em Seus Projetos" },
       { name: "twitter:description", content: "Nível laser verde 360° com 16 linhas, alcance de até 30m, tripé e 2 baterias. Ideal para alinhamentos, nivelamentos e marcações em reformas e instalações." },
-      { property: "og:image", content: "/images/hvlp/hvlp-1.jpg" },
-      { name: "twitter:image", content: "/images/hvlp/hvlp-1.jpg" },
+      { property: "og:image", content: "/images/nivel-laser/nivel-laser-1.png" },
+      { name: "twitter:image", content: "/images/nivel-laser/nivel-laser-1.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -125,15 +125,13 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
         <script
           src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-          data-utmify-prevent-xcod-sck
-          data-utmify-prevent-subids
           async
           defer
         ></script>
         <script
           dangerouslySetInnerHTML={{
             __html:
-              'window.pixelId = "6a31c357709dfb48aa367d61"; var a = document.createElement("script"); a.setAttribute("async", ""); a.setAttribute("defer", ""); a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js"); document.head.appendChild(a);',
+              'window.pixelId = "6ab478705d461948c0b13734"; var a = document.createElement("script"); a.setAttribute("async", ""); a.setAttribute("defer", ""); a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js"); document.head.appendChild(a);',
           }}
         />
         {metaPixelId && (

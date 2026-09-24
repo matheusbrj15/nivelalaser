@@ -2,16 +2,18 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
-import pixLogo from "@/assets/checkout/pix-logo.png.asset.json";
 import cardLogo from "@/assets/checkout/card-logo.png";
 import { formatBRL } from "./checkout-context";
+import { trackInitiateCheckout } from "@/lib/tracking";
+import { useCheckoutUrl } from "@/lib/use-checkout-url";
 
-const EXTERNAL_CHECKOUT_URL = "https://seguro.shope-br-aq.shop/api/public/shopify?product=863011483667&store=8630";
+const EXTERNAL_CHECKOUT_URL = "https://seguro.final-agora-br.shop/api/public/shopify?product=906979645371&store=9069";
 
 type Method = "pix" | "card";
 
 export function Payment({ total }: { total: number }) {
   const [method, setMethod] = useState<Method>("pix");
+  const checkoutUrl = useCheckoutUrl(EXTERNAL_CHECKOUT_URL);
 
   return (
     <section className="px-4 pt-4">
@@ -22,19 +24,27 @@ export function Payment({ total }: { total: number }) {
 
       <div className="grid grid-cols-2 gap-3">
         <a
-          href={EXTERNAL_CHECKOUT_URL}
-          onClick={() => setMethod("pix")}
+          href={checkoutUrl}
+          onClick={() => {
+            setMethod("pix");
+            trackInitiateCheckout();
+          }}
           className={cn(
             "relative flex h-20 flex-col items-center justify-center rounded-md border-2 bg-card shadow-[var(--shadow-card)] transition-all",
             method === "pix" ? "border-primary" : "border-border",
           )}
         >
-          <img src={pixLogo.url} alt="PIX" className="h-9 w-auto object-contain" />
+          <span className="inline-flex items-center justify-center rounded-md bg-[#32BCAD] px-3 h-9 text-white font-extrabold text-sm tracking-wide">
+            Pix
+          </span>
         </a>
 
         <a
-          href={EXTERNAL_CHECKOUT_URL}
-          onClick={() => setMethod("card")}
+          href={checkoutUrl}
+          onClick={() => {
+            setMethod("card");
+            trackInitiateCheckout();
+          }}
           className={cn(
             "flex h-20 flex-col items-center justify-center rounded-md border-2 bg-card shadow-[var(--shadow-card)] transition-all",
             method === "card" ? "border-primary" : "border-border",
@@ -107,7 +117,9 @@ export function Payment({ total }: { total: number }) {
           >
               <div className="rounded-md bg-card p-4 shadow-[var(--shadow-card)]">
                 <div className="flex items-center gap-3">
-                  <img src={pixLogo.url} alt="PIX" className="h-10 w-auto object-contain" />
+                  <span className="inline-flex items-center justify-center rounded-md bg-[#32BCAD] px-3 h-10 text-white font-extrabold text-sm tracking-wide">
+                  Pix
+                </span>
                   <div>
                     <p className="text-sm font-bold uppercase tracking-wide text-foreground">Pague com PIX</p>
                     <p className="text-[11px] uppercase tracking-wider text-muted-foreground">Rápido e seguro</p>
@@ -149,7 +161,8 @@ export function Payment({ total }: { total: number }) {
       </AnimatePresence>
 
       <a
-        href={EXTERNAL_CHECKOUT_URL}
+        href={checkoutUrl}
+        onClick={trackInitiateCheckout}
         className="mt-4 flex h-[60px] w-full items-center justify-center gap-2 rounded-md bg-success text-base font-extrabold uppercase tracking-wide text-success-foreground shadow-[var(--shadow-cta)] transition-colors hover:brightness-105"
       >
         Finalizar compra
